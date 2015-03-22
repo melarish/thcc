@@ -1,0 +1,4 @@
+_build
+blah_django-reservations
+env1
+*.pyc
