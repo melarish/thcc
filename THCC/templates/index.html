@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+{% block title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block main %}
+{% blocktrans %}
+<div style="width: 441px; height: 186px; overflow: hidden">
+<img src="static/thcc.jpg" class="img-responsive" style = "width: 400px;
+    height: 350px;margin-top: -70px;width: 100%;">
+</div>
+<h2>Hello!</h2>
+<p>
+    Welcome to THCC website.
+</p>
+{% endblocktrans %}
+{% endblock %}
