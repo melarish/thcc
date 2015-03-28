@@ -1,8 +1,8 @@
-from models import SimpleReservation
+from models import Booking
 from forms import TemplatedForm
 from django.contrib import admin
 # Default reservation model
-reservationModel = SimpleReservation
+reservationModel = Booking
 
 
 class DefaultReservationAdmin(admin.ModelAdmin):

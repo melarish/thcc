@@ -90,8 +90,9 @@ urlpatterns += patterns('',
     # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
                         
     # Reservations 
-    url(r'^reservations/', include('reservations.urls')),
+#     url(r'^reservations/', include('reservations.urls')),
     url(r'^mycalendar', mycalendar_view, name='mycalendar'),
+    url(r'^bookings/', include('bookings.urls')),
 
 )
 
