@@ -1,7 +1,15 @@
 from django import forms
 from django.forms.forms import BoundField
 from django.template import Context, loader
+from .models import Booking
 
+class BookingForm(forms.ModelForm):
+
+    class Meta:
+        model = Booking
+        fields = ('title', 'desc', 'start_date', 'end_date', 'room_id',)
+        
+        
 
 class TemplatedForm(forms.ModelForm):
     '''

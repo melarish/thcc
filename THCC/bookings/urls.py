@@ -6,9 +6,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-#     (r'^month/(?P<month>\d*)/(?P<year>\d*)', MonthDetailView.as_view()),
-    #url(r'^reservation$', Reservation.as_view(), name='reservations_reservation'),
-    #url(r'^calendar$', calendar_view, name='reservations_calendar'),
-    #url(r'^holidays$', get_holidays, name='reservations_holidays'),
-    url(r'^blah$', booking_list, name='booking_list'),
+    url(r'^list$', booking_list, name='booking_list'),
+    url(r'^booking/(?P<pk>[0-9]+)$', booking_detail, name='booking_detail'),
+    url(r'^add$', booking_add, name='booking_add'),
+    url(r'^calendar$', booking_calendar, name='booking_calendar'),
 )

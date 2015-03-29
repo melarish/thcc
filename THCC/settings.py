@@ -13,6 +13,9 @@ from __future__ import absolute_import, unicode_literals
 
 # Controls the ordering and grouping of the admin menu.
 #
+
+# PAGES_PUBLISHED_INCLUDE_LOGIN_REQUIRED = True
+
 # ADMIN_MENU_ORDER = (
 #     ("Content", ("pages.Page", "blog.BlogPost",
 #        "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
@@ -231,13 +234,11 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 # CUSTOM STUFF #
 ################
 
-# Reservation limit per day
-RESERVATION_SPOTS_TOTAL = 13
-
+# APPEND_SLASH = False
 APP_SHORTNAME = "THCC"
 APP_URL = "THCC"
 SITE_TITLE = "Tang Hall Community Centre"
-SITE_TAGLINE = "'sup bitches"
+SITE_TAGLINE = "Tangy and saucy"
 
 ################
 # APPLICATIONS #

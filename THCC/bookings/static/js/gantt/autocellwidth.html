@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto Cell Width (JavaScript Gantt Chart)</title>
+
+	<!-- head -->
+    <meta charset="utf-8">
+    <!-- demo stylesheet -->
+    <link type="text/css" rel="stylesheet" href="../helpers/demo.css?v=1514" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/layout.css?v=1514" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/elements.css?v=1514" />
+
+	<!-- helper libraries -->
+	<script src="../helpers/jquery-1.9.1.min.js" type="text/javascript"></script>
+    
+	<!-- daypilot libraries -->
+    <script src="../js/daypilot-all.min.js?v=1514" type="text/javascript"></script>
+
+    <!-- daypilot themes -->
+	<link type="text/css" rel="stylesheet" href="../themes/areas.css?v=1514" />    
+        
+	<link type="text/css" rel="stylesheet" href="../themes/month_white.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/month_green.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/month_transparent.css?v=1514" />    
+    <link type="text/css" rel="stylesheet" href="../themes/month_traditional.css?v=1514" />
+        
+	<link type="text/css" rel="stylesheet" href="../themes/navigator_8.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/navigator_white.css?v=1514" />    
+        
+	<link type="text/css" rel="stylesheet" href="../themes/calendar_transparent.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/calendar_white.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/calendar_green.css?v=1514" />    
+    <link type="text/css" rel="stylesheet" href="../themes/calendar_traditional.css?v=1514" />
+
+    <link type="text/css" rel="stylesheet" href="../themes/scheduler_8.css?v=1514" />
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_white.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_green.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_blue.css?v=1514" />    
+    <link type="text/css" rel="stylesheet" href="../themes/scheduler_traditional.css?v=1514" />
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_transparent.css?v=1514" />    
+
+
+	<!-- /head -->
+</head>
+<body>
+
+  <!-- top -->
+    <div id="header">
+			<div class="bg-help">
+				<div class="inBox">
+					<h1 id="logo"><a href='http://javascript.daypilot.org/'>DayPilot Pro for JavaScript</a> &raquo; <a href='http://javascript.daypilot.org/demo/'>Demo</a></h1>
+					<p id="claim">AJAX Calendar/Scheduling Widgets for JavaScript.</p>
+					<hr class="hidden" />
+				</div>
+			</div>
+		</div>
+		
+    <div id="download">
+            <div style="float:left; width: 100px;"><a href="http://javascript.daypilot.org/files/DayPilotProJavaScriptTrial-8.0.1514.zip" class="inline-btn track-download"><span>Download</span></a></div>
+            <div style="margin-left: 110px;">
+                <div>Download a trial version (600 kB).</div>
+                <div><a href="http://javascript.daypilot.org/files/DayPilotProJavaScriptTrial-8.0.1514.zip" class="track-download">DayPilotProJavaScriptTrial-8.0.1514.zip</a></div>
+            </div>
+    </div>
+
+    <div id="main">
+        <div id="tabs">
+            <!-- tabs -->
+<div>
+<a class='tab' href='../index.html'><span style="width: 100px; text-align:center;">Home</span></a>
+<a class='tab' href='../calendar/index.html'><span style="width: 100px; text-align:center;">Calendar</span></a>
+<a class='tab' href='../month/index.html'><span style="width: 100px; text-align:center;">Month</span></a>
+<a class='tab' href='../scheduler/index.html'><span style="width: 100px; text-align:center;">Scheduler</span></a>
+<a class='tab selected' href='../gantt/index.html'><span style="width: 100px; text-align:center;">Gantt</span></a>
+</div>
+<div class="header"><div class="bg-help">A Time Line for Multiple Resources.</div></div>
+
+            <!-- /tabs -->
+        </div>
+        
+        <div id="container" >
+	        <div id="left" class="menu">
+		    	            <div>
+                        <!-- menu -->
+<div class="header">Main</div>
+<div>
+  <a href='index.html'><span>JavaScript Gantt</span></a>
+</div>
+<div class="header">Tasks</div>
+<div>
+    <a href='taskcreating.html'><span>Task Creating</span></a>
+</div>
+<div>
+    <a href='progressive.html'><span>Progressive Rendering</span></a>
+</div>
+<div class="header">Grid</div>
+<div>
+    <a href='autocellwidth.html'><span>Auto Cell Width</span></a>
+</div>
+<div class="header">API</div>
+<div>
+    <a href='jquery.html'><span>jQuery</span></a>
+</div>
+<div>
+    <a href='angularjs.html'><span>AngularJS</span></a>
+</div>
+
+                        <!-- /menu -->
+	    		            </div>
+            </div>
+	        <div id="content">
+	            <div>
+	<!-- /top -->
+
+<div class="note"><b>Note:</b> Read more about the <a href="http://doc.daypilot.org/gantt/auto-cell-width/">auto cell width</a>.</div>
+
+
+<div id="dp"></div>
+        
+<script type="text/javascript">
+    
+    var dp = new DayPilot.Gantt("dp");
+
+    dp.cellWidthSpec = "Auto";
+
+    // generate and load sample tasks
+    var start = new DayPilot.Date().getDatePart();
+    var last = null;
+    for (var i = 0; i < 10; i++) {
+        var duration = Math.floor(Math.random() * 3) + 1; // 1 to 3
+        var end = start.addDays(duration);
+
+        var e = new DayPilot.Task({
+            start: start,
+            end: end,
+            id: DayPilot.guid(),
+            text: "Task " + i,
+            tags: {
+                info: "info text"
+            },
+            children: [
+                {
+                    start: start,
+                    end: end,
+                    id: DayPilot.guid(),
+                    text: "Subtask 1",
+                    complete: Math.floor(Math.random() * 101) // 0 to 100
+                },
+                {
+                    start: start,
+                    end: end,
+                    id: DayPilot.guid(),
+                    text: "Subtask 2",
+                    complete: Math.floor(Math.random() * 101) // 0 to 100
+                },
+                {
+                    start: end,
+                    id: DayPilot.guid(),
+                    text: "Milestone 1",
+                    type: "Milestone"
+                }
+
+            ]
+        });
+
+        dp.tasks.add(e);
+
+        if (last) {
+            dp.links.add({from: last, to: e.id(), type: "FinishToStart"});
+        }
+        last = e.id();
+        start = end;
+
+    }
+
+    dp.columns = [
+        {
+            title: "Name",
+            width: 50,
+            property: "text"
+        },
+        {
+            title: "Info",
+            width: 50,
+            property: "info"
+        },
+        {
+            title: "Duration",
+            width: 50,
+            format: function(args) {
+                var duration = new DayPilot.TimeSpan(args.task.end.getTime() - args.task.start.getTime());
+                return duration.toString("d") + "d " + duration.toString("h") + "h";
+            }
+        }
+    ];
+
+    dp.onTaskClicked = function(args) {
+        alert("Clicked: " + args.e.id());
+    };
+
+    dp.init();
+
+</script>
+
+  <!-- bottom -->
+                </div>
+	        </div>
+        </div>
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    var url = window.location.href;
+    var filename = url.substring(url.lastIndexOf('/')+1);
+    if (filename === "") filename = "index.html";
+    $(".menu a[href='" + filename + "']").addClass("selected");
+});
+        
+</script>
+	<!-- /bottom -->
+
+</body>
+</html>
+

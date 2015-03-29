@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Row Header Hiding (AJAX Scheduler)</title>
+
+	<!-- head -->
+    <meta charset="utf-8">
+    <!-- demo stylesheet -->
+    <link type="text/css" rel="stylesheet" href="../helpers/demo.css?v=1514" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/layout.css?v=1514" />
+    <link type="text/css" rel="stylesheet" href="../helpers/media/elements.css?v=1514" />
+
+	<!-- helper libraries -->
+	<script src="../helpers/jquery-1.9.1.min.js" type="text/javascript"></script>
+    
+	<!-- daypilot libraries -->
+    <script src="../js/daypilot-all.min.js?v=1514" type="text/javascript"></script>
+
+    <!-- daypilot themes -->
+	<link type="text/css" rel="stylesheet" href="../themes/areas.css?v=1514" />    
+        
+	<link type="text/css" rel="stylesheet" href="../themes/month_white.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/month_green.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/month_transparent.css?v=1514" />    
+    <link type="text/css" rel="stylesheet" href="../themes/month_traditional.css?v=1514" />
+        
+	<link type="text/css" rel="stylesheet" href="../themes/navigator_8.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/navigator_white.css?v=1514" />    
+        
+	<link type="text/css" rel="stylesheet" href="../themes/calendar_transparent.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/calendar_white.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/calendar_green.css?v=1514" />    
+    <link type="text/css" rel="stylesheet" href="../themes/calendar_traditional.css?v=1514" />
+
+    <link type="text/css" rel="stylesheet" href="../themes/scheduler_8.css?v=1514" />
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_white.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_green.css?v=1514" />    
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_blue.css?v=1514" />    
+    <link type="text/css" rel="stylesheet" href="../themes/scheduler_traditional.css?v=1514" />
+	<link type="text/css" rel="stylesheet" href="../themes/scheduler_transparent.css?v=1514" />    
+
+
+	<!-- /head -->
+</head>
+<body>
+
+  <!-- top -->
+    <div id="header">
+			<div class="bg-help">
+				<div class="inBox">
+					<h1 id="logo"><a href='http://javascript.daypilot.org/'>DayPilot Pro for JavaScript</a> &raquo; <a href='http://javascript.daypilot.org/demo/'>Demo</a></h1>
+					<p id="claim">AJAX Calendar/Scheduling Widgets for JavaScript.</p>
+					<hr class="hidden" />
+				</div>
+			</div>
+		</div>
+		
+    <div id="download">
+            <div style="float:left; width: 100px;"><a href="http://javascript.daypilot.org/files/DayPilotProJavaScriptTrial-8.0.1514.zip" class="inline-btn track-download"><span>Download</span></a></div>
+            <div style="margin-left: 110px;">
+                <div>Download a trial version (600 kB).</div>
+                <div><a href="http://javascript.daypilot.org/files/DayPilotProJavaScriptTrial-8.0.1514.zip" class="track-download">DayPilotProJavaScriptTrial-8.0.1514.zip</a></div>
+            </div>
+    </div>
+
+    <div id="main">
+        <div id="tabs">
+            <!-- tabs -->
+<div>
+<a class='tab' href='../index.html'><span style="width: 100px; text-align:center;">Home</span></a>
+<a class='tab' href='../calendar/index.html'><span style="width: 100px; text-align:center;">Calendar</span></a>
+<a class='tab' href='../month/index.html'><span style="width: 100px; text-align:center;">Month</span></a>
+<a class='tab selected' href='../scheduler/index.html'><span style="width: 100px; text-align:center;">Scheduler</span></a>
+<a class='tab' href='../gantt/index.html'><span style="width: 100px; text-align:center;">Gantt</span></a>
+</div>
+<div class="header"><div class="bg-help">A Time Line for Multiple Resources.</div></div>
+
+            <!-- /tabs -->
+        </div>
+        
+        <div id="container" >
+	        <div id="left" class="menu">
+		    	            <div>
+                        <!-- menu -->
+<div class="header">Main</div>
+<div>
+  <a href='index.html'><span>JavaScript Scheduler</span></a>
+</div>
+<div class="header">Themes</div>
+<div>
+  <a href='themetransparent.html'><span>Transparent</span></a>
+</div>
+<div>
+  <a href='themewhite.html'><span>White</span></a>
+</div>
+<div>
+  <a href='themegreen.html'><span>Green</span></a>
+</div>
+<div>
+  <a href='theme8.html'><span>Windows 8</span></a>
+</div>
+<div>
+  <a href='themetraditional.html'><span>Traditional</span></a>
+</div>
+<div>
+  <a href='themeblue.html'><span>Blue</span></a>
+</div>
+<div class="header">Controls</div>
+<div>
+  <a href='messagebar.html'><span>Message Bar</span></a>
+</div>
+<div class="header">Navigation</div>
+<div>
+  <a href='navigator.html'><span>Navigator</span></a>
+</div>
+<div class="header">Grid</div>
+<div>
+    <a href='cellcustomization.html'><span>Cell Customization</span></a>
+</div>
+<div>
+  <a href='autocellwidth.html'><span>Auto Cell Width</span></a>
+</div>
+<div>
+  <a href='crosshair.html'><span>Crosshair</span></a>
+</div>
+<div>
+    <a href='multirange.html'><span>Multi-Range Selecting</span> <span class="new">NEW</span></a>
+</div>
+<div>
+    <a href='scrolling.html'><span>Scrolling</span></a>
+</div>
+<div>
+  <a href='snaptogrid.html'><span>Snap to Grid</span></a>
+</div>
+<div>
+  <a href='highlighting.html'><span>Highlighting Weekends</span></a>
+</div>
+<div class="header">Timeline</div>
+<div>
+  <a href='timeheaders.html'><span>Time Headers</span></a>
+</div>
+<div>
+  <a href='hide.html'><span>Hiding Weekends</span></a>
+</div>
+<div>
+    <a href='hidingnonbusiness.html'><span>Hiding Non-Business Hours</span></a>
+</div>
+<div>
+  <a href='separators.html'><span>Separators</span></a>
+</div>
+<div>
+  <a href='scalehours.html'><span>Scale: Hours</span></a>
+</div>
+<div>
+  <a href='scaledays.html'><span>Scale: Days</span></a>
+</div>
+<div>
+  <a href='scaleweeks.html'><span>Scale: Weeks</span></a>
+</div>
+<div>
+  <a href='scalemonths.html'><span>Scale: Months</span></a>
+</div>
+<div>
+  <a href='scaleyears.html'><span>Scale: Years</span></a>
+</div>
+<div>
+  <a href='scalecustom.html'><span>Scale: Custom</span></a>
+</div>
+<div class="header">Gantt</div>
+<div>
+    <a href='gantt.html'><span>Gantt</span></a>
+</div>
+<div class="header">API</div>
+<div>
+    <a href='jquery.html'><span>jQuery</span></a>
+</div>
+<div>
+    <a href='angularjs.html'><span>AngularJS</span></a>
+</div>
+<div class="header">View Types</div>
+<div>
+  <a href='timesheet.html'><span>Timesheet</span></a>
+</div>
+<div class="header">Events</div>
+<div>
+    <a href='groupconcurrent.html'><span>Group Concurrent Events</span></a>
+</div>
+<div>
+  <a href='dynamic.html'><span>Dynamic Event Loading</span></a>
+</div>
+<div>
+  <a href='eventareas.html'><span>Event Active Areas</span></a>
+</div>
+<div>
+  <a href='eventmenu.html'><span>Event Context Menu</span></a>
+</div>
+<div>
+    <a href='eventcustomization.html'><span>Event Customization</span></a>
+</div>
+<div>
+  <a href='eventdeleting.html'><span>Event Deleting</span></a>
+</div>
+<div>
+    <a href='eventfiltering.html'><span>Event Filtering</span></a>
+</div>
+<div>
+    <a href='eventheight.html'><span>Event Height</span></a>
+</div>
+<div>
+    <a href='eventinlineediting.html'><span>Event Inline Editing</span></a>
+</div>
+<div>
+  <a href='eventloading.html'><span>Event Loading</span></a>
+</div>
+<div>
+    <a href='eventmultimoving.html'><span>Event Multi-Moving</span> <span class="new">NEW</span></a>
+</div>
+<div>
+    <a href='eventoverlapping.html'><span>Event Overlapping</span></a>
+</div>
+<div>
+  <a href='eventselecting.html'><span>Event Selecting</span></a>
+</div>
+<div>
+  <a href='external.html'><span>External Drag and Drop</span></a>
+</div>
+<div>
+  <a href='eventcomplete.html'><span>Percent Complete</span></a>
+</div>
+<div>
+  <a href='eventrealtime.html'><span>Real-Time Drag and Drop Indicators</span></a>
+</div>
+<div class="header">Rows</div>
+<div>
+    <a href='roweventheight.html'><span>Custom Event Height</span></a>
+</div>
+<div>
+    <a href='rowprogressive.html'><span>Progressive Rendering</span></a>
+</div>
+<div>
+    <a href='rowcreating.html'><span>Row Creating</span></a>
+</div>
+<div>
+    <a href='rowfiltering.html'><span>Row Filtering</span></a>
+</div>
+<div>
+    <a href='rowheaderhiding.html'><span>Row Header Hiding</span></a>
+</div>
+<div>
+    <a href='rowheaderscrolling.html'><span>Row Header Scrolling</span></a>
+</div>
+<div>
+  <a href='tree.html'><span>Resource Tree</span></a>
+</div>
+<div>
+    <a href='resourceutilization.html'><span>Resource Utilization</span></a>
+</div>
+<div>
+  <a href='treedynamic.html'><span>Dynamic Tree Loading</span></a>
+</div>
+<div>
+  <a href='rowediting.html'><span>Row Editing</span></a>
+</div>
+<div>
+  <a href='rowheadercolumns.html'><span>Row Header Columns</span></a>
+</div>
+<div>
+    <a href='rowmoving.html'><span>Row Moving</span></a>
+</div>
+<div>
+  <a href='rowselecting.html'><span>Row Selecting</span></a>
+</div>
+<div class="header">Localization</div>
+<div>
+  <a href='localization.html'><span>Localization</span></a>
+</div>
+
+                        <!-- /menu -->
+	    		            </div>
+            </div>
+	        <div id="content">
+	            <div>
+	<!-- /top -->
+
+<div class="note"><b>Note:</b> Read more <a href="http://doc.daypilot.org/scheduler/row-header-hiding/">row header hiding</a>.</div>
+        
+<div id="dp"></div>
+        
+<script type="text/javascript">
+    
+    var dp = new DayPilot.Scheduler("dp");
+
+    dp.startDate = "2014-01-01";  // or just dp.startDate = "2013-03-25";
+    dp.days = 365;
+    dp.scale = "Day";
+    dp.timeHeaders = [
+        { groupBy: "Month", format: "MMM yyyy" },
+        { groupBy: "Cell", format: "ddd d" }
+    ];
+    
+    dp.bubble = new DayPilot.Bubble();
+
+    dp.contextMenu = new DayPilot.Menu({items: [
+        {text:"Edit", onclick: function() {alert("Event value: " + this.source.value());} },
+        {text:"Delete", onclick: function() {alert("Event text: " + this.source.text());} },
+        {text:"-"},
+        {text:"Copy", onclick: function() {alert("Event start: " + this.source.start().toStringSortable());} },
+        {text:"Select", onclick: function() {alert("Event start: " + this.source.start().toStringSortable());} },
+    ]});
+
+    dp.rowHeaderColumns = [
+        { title: "Name", width: 120 },
+        { title: "Params", width: 120 }
+    ];
+
+    dp.rowHeaderWidth = 200;
+    dp.rowHeaderScrolling = true;
+    dp.rowHeaderHideIconEnabled = true;
+
+    dp.treeEnabled = true;
+    dp.resources = [
+                 { name: "Room A", id: "A", expanded: true, children:[
+                         { name : "Room A.1", id : "A.1" },
+                         { name : "Room A.2", id : "A.2" }
+                         ] 
+                 },
+                 { name: "Room B", id: "B" },
+                 { name: "Room C", id: "C" },
+                 { name: "Room D", id: "D" },
+                 { name: "Room E", id: "E" },
+                 { name: "Room F", id: "F" },
+                 { name: "Room G", id: "G" },
+                 { name: "Room H", id: "H" },
+                 { name: "Room I", id: "I" },
+                 { name: "Room J", id: "J" },
+                 { name: "Room K", id: "K" },
+                ];
+
+    // generate and load events
+    
+    for (var i = 0; i < 15; i++) {
+        var duration = Math.floor(Math.random() * 6) + 1; // 1 to 6
+        var durationDays = Math.floor(Math.random() * 6); // 0 to 5
+        var start = Math.floor(Math.random() * 6) + 2; // 2 to 7
+        var res = Math.floor(Math.random() * 6); // 0 to 5
+
+        var e = new DayPilot.Event({
+            start: new DayPilot.Date("2014-03-25T00:00:00").addDays(start),
+            end: new DayPilot.Date("2014-03-25T12:00:00").addDays(start).addDays(durationDays).addHours(duration),
+            id: DayPilot.guid(),
+            resource: String.fromCharCode(65+res),
+            text: "Event"
+        });
+
+        dp.events.add(e);
+    }
+    
+    var e = new DayPilot.Event({
+        start: new DayPilot.Date("2014-05-01T00:00:00"),
+        end: new DayPilot.Date("2014-05-01T00:00:00"),
+        id: DayPilot.guid(),
+        resource: "B",
+        text: "Zero-Duration Event"
+    });
+    dp.events.add(e);
+
+    var e = new DayPilot.Event({
+        start: new DayPilot.Date("2014-05-01T00:00:00"),
+        end: new DayPilot.Date("2014-05-02T00:00:00"),
+        id: DayPilot.guid(),
+        resource: "A.1",
+        text: "One-Day Event"
+    });
+    dp.events.add(e);
+
+    dp.dynamicEventRenderingCacheSweeping = true;
+
+    dp.eventHoverHandling = "Bubble";
+
+    dp.eventMovingStartEndEnabled = true;
+    dp.eventResizingStartEndEnabled = true;
+    dp.timeRangeSelectingStartEndEnabled = true;
+
+    dp.onBeforeEventRender = function(args) {
+        args.e.bubbleHtml = "<div><b>" + args.e.text + "</b></div><div>Start: " + new DayPilot.Date(args.e.start).toString("M/d/yyyy") + "</div>";
+    };
+
+    dp.onBeforeResHeaderRender = function(args) {
+    };
+
+    // event moving
+    dp.onEventMoved = function (args) {
+        dp.message("Moved: " + args.e.text());
+    };
+
+    // event resizing
+    dp.onEventResized = function (args) {
+        dp.message("Resized: " + args.e.text());
+    };
+
+    // event creating
+    dp.onTimeRangeSelected = function (args) {
+        var name = prompt("New event name:", "Event");
+        dp.clearSelection();
+        if (!name) return;
+        var e = new DayPilot.Event({
+            start: args.start,
+            end: args.end,
+            id: DayPilot.guid(),
+            resource: args.resource,
+            text: name
+        });
+        dp.events.add(e);
+        dp.message("Created");
+    };
+    
+    dp.onEventClicked = function(args) {
+        alert("clicked: " + args.e.id() + " ctrl: " + args.ctrl);
+    };
+    
+    dp.onTimeHeaderClick = function(args) {
+        console.log(args.header);
+        alert("clicked: " + args.header.start);
+    };
+    
+    dp.separators = [
+        {color:"Red", location:"2014-03-29T00:00:00", layer: "BelowEvents"}
+    ];
+
+    dp.init();
+    
+    dp.scrollTo("2014-03-25");
+
+</script>
+
+  <!-- bottom -->
+                </div>
+	        </div>
+        </div>
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    var url = window.location.href;
+    var filename = url.substring(url.lastIndexOf('/')+1);
+    if (filename === "") filename = "index.html";
+    $(".menu a[href='" + filename + "']").addClass("selected");
+});
+        
+</script>
+	<!-- /bottom -->
+
+</body>
+</html>
+

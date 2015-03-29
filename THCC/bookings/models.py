@@ -6,6 +6,10 @@ class Booking(models.Model):
     """Booking model - when, where and who"""
     # Which user/group created this booking
     user = models.ForeignKey(User)
+    # Event title, reason etc
+    title = models.CharField(null=False, max_length=200)
+    # Event desc
+    desc = models.TextField(null=False)
     # When the booking starts - should be in half hour intervals
     start_date = models.DateTimeField(null=False, blank=False)
     # When the booking period ends
