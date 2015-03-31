@@ -17,7 +17,13 @@ class Booking(models.Model):
     # When the booking was created - could be useful for conflict resolution, billing etc
     created = models.DateTimeField(auto_now_add=True)
     # Which room/resource was booked
-    room_id = models.IntegerField(null=False)
+    ROOM_CHOICES = [
+        ("Hall", "Hall"),
+        ("Kitchen", "Kitchen"),
+        ("Lounge", "Lounge"),
+        ("Office One", "Office One"),
+    ]
+    room = models.CharField(null=False, max_length=100, choices=ROOM_CHOICES)
     # Has this booking been approved by an admin
     approved = models.BooleanField(default=False, editable=True)
     
@@ -25,8 +31,22 @@ class Booking(models.Model):
 #         abstract = True
 
     def __unicode__(self):
-        return str(self.start_date) + " User: " + str(self.user) + ", Room: " + str(self.room_id)
+        return str(self.start_date) + " Title: " + self.title + ", User: " + str(self.user) + ", Room: " + self.room
 
     def short_desc(self):
         """Default short description visible on reservation button"""
         return str(self.id)
+
+    def to_json(self):
+        bookingdict = self.__dict__.copy()  # copy or we modify object's _state etc
+        bookingdict['start_date'] = bookingdict['start_date'].strftime("%Y-%m-%dT%H:%M:%S")  # format required by calendar
+        bookingdict['end_date'] = bookingdict['end_date'].strftime("%Y-%m-%dT%H:%M:%S")  # format required by calendar
+        print type(bookingdict['start_date'])
+#         bookingdict['start_date'] = ""
+#         bookingdict['end_date'] = ""
+        bookingdict['created'] = ""
+        bookingdict['_state'] = ""
+#         print bookingdict
+        return bookingdict
+        
+        

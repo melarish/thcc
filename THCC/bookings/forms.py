@@ -7,7 +7,7 @@ class BookingForm(forms.ModelForm):
 
     class Meta:
         model = Booking
-        fields = ('title', 'desc', 'start_date', 'end_date', 'room_id',)
+        fields = ('title', 'desc', 'start_date', 'end_date', 'room',)
         
         
 

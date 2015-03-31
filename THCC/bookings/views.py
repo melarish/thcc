@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from models import Booking
 from forms import BookingForm
-
+from json import dumps
 
 def booking_calendar(request):
     bookings = Booking.objects.all()
-    return render(request, "calendar.html", {'bookings': bookings})
+    bookings_as_dicts = []
+    for booking in bookings:
+        bookings_as_dicts.append(booking.to_json())
+    bookings_json_string = dumps(bookings_as_dicts)
+    print bookings_json_string
+    return render(request, "calendar.html", {'bookings': bookings_json_string})
 
 
 def booking_list(request):

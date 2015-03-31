@@ -1,0 +1,4 @@
+add test booking data
+show test data on calendar
+add bookings via calendar interface
+move to different days/weeks/months in calendar - perhaps different views

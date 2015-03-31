@@ -49,25 +49,37 @@
 
 
 
-	            
 <div id="dp"></div>
 
 <script type="text/javascript">
     var dp = new DayPilot.Scheduler("dp");
+    
+    //dp.businessBeginsHour = 6;
+    //dp.businessEndsHour = 24;
+    //dp.showNonBusiness = false;
+    
+    dp.onIncludeTimeCell = function(args) {
+        //console.log(args.cell.start.getHours());
+        if (args.cell.start.getHours() > 1 &&
+           args.cell.start.getHours() < 7) { // hide 2AM - 6AM
+          
+          args.cell.visible = false;
+        }
+    }
 
     // view
-    dp.startDate = new DayPilot.Date("2013-03-25");  // or just dp.startDate = "2013-03-25";
+    dp.startDate = new DayPilot.Date("2015-03-29");  // or just dp.startDate = "2013-03-25";
     dp.cellGroupBy = "Month";
     dp.days = 7;
-    dp.cellDuration = 1440; // one day
-    
-    dp.moveBy = 'Full';
+    dp.cellDuration = 30; // booking slots are multiples of 30 mins
+    // Don't allow users to move/resize events
+    dp.moveBy = 'None';
     
     dp.timeHeaders = [
         { groupBy: "Day" },
-        { groupBy: "Cell" }
+        { groupBy: "Hour" }  // Without this, we can't see the hours, just 00 and 30 mins
     ];
-    dp.scale = "Hour";
+    dp.scale = "CellDuration";
 
     // bubble, sync loading
     // see also DayPilot.Event.data.staticBubbleHTML property
@@ -78,7 +90,7 @@
 	    	{text:"Show event text", onclick: function() {alert("Event text: " + this.source.text());} },
 	    	{text:"Show event start", onclick: function() {alert("Event start: " + this.source.start().toStringSortable());} },
 	    	{text:"Go to google.com", href: "http://www.google.com/?q={0}"},
-	    	{text:"CallBack: Delete this event", command: "delete"} ,
+	    	{text:"CallBack: Delete this event", command: "deleteme"} ,
                 {text:"submenu", items: [
                         {text:"Show event ID", onclick: function() {alert("Event value: " + this.source.value());} },
                         {text:"Show event text", onclick: function() {alert("Event text: " + this.source.text());} }
@@ -89,14 +101,32 @@
     dp.treeEnabled = true;
     dp.rowHeaderWidth = 200;
     dp.resources = [
-                 { name: "Hall", id: "H" },
-                 { name: "Kitchen", id: "K" },
-                 { name: "Lounge", id: "L" },
-                 { name: "Office One", id: "O" },
+                 { name: "Hall", id: "Hall" },
+                 { name: "Kitchen", id: "Kitchen" },
+                 { name: "Lounge", id: "Lounge" },
+                 { name: "Office One", id: "Office One" },
                 ];
 
     // generate and load events
-    for (var i = 0; i < 5; i++) {
+    all_bookings = {% autoescape off %}{{bookings}}{% endautoescape %}
+    console.log(all_bookings); 
+    for (var i = 0; i < all_bookings.length; i++) {
+        //console.log(all_bookings[i]);        
+        var duration = Math.floor(Math.random() * 1) + 1; // 1 to 6
+        var start = Math.floor(Math.random() * 6) - 3; // -3 to 3
+        var e = new DayPilot.Event({
+            start: new DayPilot.Date(all_bookings[i].start_date),
+            end: new DayPilot.Date(all_bookings[i].end_date),
+            id: DayPilot.guid(),
+            resource: all_bookings[i].room,
+            text: all_bookings[i].title,
+            desc: all_bookings[i].desc,/*
+            bubbleHtml: "Testing bubble"*/
+        });
+        console.log(e);
+        dp.events.add(e);
+    }
+    /*for (var i = 0; i < 5; i++) {
         var duration = Math.floor(Math.random() * 1) + 1; // 1 to 6
         var start = Math.floor(Math.random() * 6) - 3; // -3 to 3
 
@@ -106,26 +136,27 @@
             id: DayPilot.guid(),
             resource: dp.resources[Math.floor(Math.random() * 4)].id,
             text: "Mel says I own this now"/*,
-            bubbleHtml: "Testing bubble"*/
+            bubbleHtml: "Testing bubble"
         });
         dp.events.add(e);
-    }
+    }*/
 
     dp.eventHoverHandling = "Bubble";
     
     dp.onBeforeEventRender = function(args) {
-        args.e.bubbleHtml = args.e.start + " " + args.e.end;
+        args.e.bubbleHtml = args.e.desc;
     };
     
+    
     // event moving
-    dp.onEventMoved = function (args) {
-        dp.message("Moved: " + args.e.text());
-    };
+//     dp.onEventMoved = function (args) {
+//         dp.message("Moved: " + args.e.text());
+//     };
 
     // event resizing
-    dp.onEventResized = function (args) {
-        dp.message("Resized: " + args.e.text());
-    };
+//     dp.onEventResized = function (args) {
+//         dp.message("Resized: " + args.e.text());
+//     };
 
     // event creating
     dp.onTimeRangeSelected = function (args) {
@@ -154,7 +185,7 @@
 
     dp.init();
     
-    dp.scrollTo("2013-03-25");
+    dp.scrollTo("2015-03-29");
 
 </script>
 
