@@ -50,7 +50,24 @@
 
 
 <div id="dp"></div>
-
+{% include "forms/calendar_booking.html" %}
+<!-- <h1>New booking:</h1>
+<form method="POST" class="post-form">{% csrf_token %}
+    <p><label for="id_title">Title:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
+<p><label for="id_desc">Desc:</label> <textarea cols="40" id="id_desc" name="desc" rows="10">
+</textarea></p>
+<p><label for="id_start_date">Start date:</label> <input id="id_start_date" name="start_date" type="text" /></p>
+<p><label for="id_end_date">End date:</label> <input id="id_end_date" name="end_date" type="text" /></p>
+<p><label for="id_room">Room:</label> <select id="id_room" name="room">
+<option value="" selected="selected">---------</option>
+<option value="Hall">Hall</option>
+<option value="Kitchen">Kitchen</option>
+<option value="Lounge">Lounge</option>
+<option value="Office One">Office One</option>
+</select></p>
+    <button type="submit" class="save btn btn-default">Save</button>
+</form>
+ -->
 <script type="text/javascript">
     var dp = new DayPilot.Scheduler("dp");
     
@@ -160,15 +177,22 @@
 
     // event creating
     dp.onTimeRangeSelected = function (args) {
-        var name = prompt("name goes here:", "Event");
+        //var name = prompt("name goes here:", "Event");
+        start = args.start.value.slice(0,10)+" "+args.start.value.slice(11);
+        end = args.end.value.slice(0,10)+" "+args.end.value.slice(11);
+        console.log(start);
+        document.getElementById("id_start_date").value = start;
+        document.getElementById("id_end_date").value = end;
+        document.getElementById("id_room").value = args.resource;
         dp.clearSelection();
-        if (!name) return;
+        document.getElementById("id_title").focus();
+        //if (!name) return;
         var e = new DayPilot.Event({
             start: args.start,
             end: args.end,
             id: DayPilot.guid(),
             resource: args.resource,
-            text: name
+            text: "New booking" //can retrieve username later
         });
         dp.events.add(e);
         

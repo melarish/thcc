@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-6">
+        <h1>New booking:</h1>
+      </div>
+  </div>
+    
+  <form method="POST" class="post-form">{% csrf_token %}
+  <div class="row">
+    <div class="col-md-4">
+      <p><label for="id_title">Title:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
+    </div>
+    <div class="col-md-4">
+      <p><label for="id_desc">Description:</label> <input id="id_desc" maxlength="200" name="desc" type="text" /></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <p><label for="id_start_date">Start:</label> <input id="id_start_date" maxlength="200" name="start_date" type="text" /></p>
+    </div>
+    <div class="col-md-4">
+      <p><label for="id_end_date">End:</label> <input id="id_end_date" maxlength="200" name="end_date" type="text" /></p>
+    </div>
+    <div class="col-md-4">
+        <p><label for="id_room">Room:</label> <input id="id_room" maxlength="200" name="room" type="text" /></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <button type="submit" class="save btn btn-default">Save</button>
+    </div>
+  </div>
+  </form>
+</div>
+
+<!-- <form method="POST" class="post-form"><input type='hidden' name='csrfmiddlewaretoken' value='yaAClHvb0ZJqBkTUEp4tqkliUuN5IfXR' />
+    <p><label for="id_title">Title:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
+<p><label for="id_desc">Desc:</label> <textarea cols="40" id="id_desc" name="desc" rows="10">
+</textarea></p>
+<p><label for="id_start_date">Start date:</label> <input id="id_start_date" name="start_date" type="text" /></p>
+<p><label for="id_end_date">End date:</label> <input id="id_end_date" name="end_date" type="text" /></p>
+<p><label for="id_room">Room:</label> <select id="id_room" name="room">
+<option value="" selected="selected">---------</option>
+<option value="Hall">Hall</option>
+<option value="Kitchen">Kitchen</option>
+<option value="Lounge">Lounge</option>
+<option value="Office One">Office One</option>
+</select></p>
+    <button type="submit" class="save btn btn-default">Save</button>
+</form> -->

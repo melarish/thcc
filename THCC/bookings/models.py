@@ -41,9 +41,6 @@ class Booking(models.Model):
         bookingdict = self.__dict__.copy()  # copy or we modify object's _state etc
         bookingdict['start_date'] = bookingdict['start_date'].strftime("%Y-%m-%dT%H:%M:%S")  # format required by calendar
         bookingdict['end_date'] = bookingdict['end_date'].strftime("%Y-%m-%dT%H:%M:%S")  # format required by calendar
-        print type(bookingdict['start_date'])
-#         bookingdict['start_date'] = ""
-#         bookingdict['end_date'] = ""
         bookingdict['created'] = ""
         bookingdict['_state'] = ""
 #         print bookingdict

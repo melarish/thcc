@@ -3,14 +3,24 @@ from models import Booking
 from forms import BookingForm
 from json import dumps
 
-def booking_calendar(request):
+def booking_calendar(request):    
+    if request.method == "POST":
+        form = BookingForm(request.POST)
+        print "posting"
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            print booking
+        
     bookings = Booking.objects.all()
     bookings_as_dicts = []
     for booking in bookings:
         bookings_as_dicts.append(booking.to_json())
     bookings_json_string = dumps(bookings_as_dicts)
-    print bookings_json_string
-    return render(request, "calendar.html", {'bookings': bookings_json_string})
+    #print bookings_json_string
+    form = BookingForm()
+    return render(request, "calendar.html", {'bookings': bookings_json_string, 'form': form})
 
 
 def booking_list(request):
