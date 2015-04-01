@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     url(r'^booking/(?P<pk>[0-9]+)$', booking_detail, name='booking_detail'),
     url(r'^add$', booking_add, name='booking_add'),
     url(r'^calendar$', booking_calendar, name='booking_calendar'),
-#     url(r'^submit$', booking_submit, name='booking_submit'),
+    url(r'^submit$', booking_submit, name='booking_submit'),
 )

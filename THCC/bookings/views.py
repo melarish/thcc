@@ -1,18 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from models import Booking
 from forms import BookingForm
 from json import dumps
+from django.views.decorators.http import require_POST
 
-def booking_calendar(request):    
-    if request.method == "POST":
-        form = BookingForm(request.POST)
-        print "posting"
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.user = request.user
-            booking.save()
-            print booking
-        
+def booking_calendar(request):          
     bookings = Booking.objects.all()
     bookings_as_dicts = []
     for booking in bookings:
@@ -21,6 +13,19 @@ def booking_calendar(request):
     #print bookings_json_string
     form = BookingForm()
     return render(request, "calendar.html", {'bookings': bookings_json_string, 'form': form})
+
+def booking_submit(request):
+    if request.method == "POST":
+        form = BookingForm(request.POST)
+        print "posting"
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            print booking
+            return render(request, "booking_submitted.html")
+    else:
+        return redirect('bookings.views.booking_calendar')
 
 
 def booking_list(request):

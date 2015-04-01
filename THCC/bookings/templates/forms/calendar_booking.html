@@ -5,7 +5,7 @@
       </div>
   </div>
     
-  <form method="POST" class="post-form">{% csrf_token %}
+  <form method="POST" class="post-form" action="{% url 'bookings.views.booking_submit' %}">{% csrf_token %}
   <div class="row">
     <div class="col-md-4">
       <p><label for="id_title">Title:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
