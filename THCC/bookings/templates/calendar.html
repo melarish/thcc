@@ -47,33 +47,32 @@
 
 {% block main %}
 
-
+<div class="space">
+    Showing from <script type="text/javascript">document.write(new Date().toDateString());</script>
+     to <script type="text/javascript">
+    var date = new Date();
+    date.setDate(date.getDate() + 6);
+    document.write(date.toDateString());</script> 
+    <div style="float:right">
+    <a href="javascript:dp.startDate = new DayPilot.Date(new Date()); dp.update();">Today</a>
+    |
+    <a href="javascript:dp.startDate = dp.startDate.addDays(-7); dp.update();">Previous week</a>
+    |
+    <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next week</a>  
+    |   
+    <a href="javascript:dp.startDate = dp.startDate.addMonths(-1); dp.update();">Previous month</a>
+    |
+    <a href="javascript:dp.startDate = dp.startDate.addMonths(1); dp.update();">Next month</a>
+    </div>
+</div>
 
 <div id="dp"></div>
 {% include "forms/calendar_booking.html" %}
-<!-- <h1>New booking:</h1>
-<form method="POST" class="post-form">{% csrf_token %}
-    <p><label for="id_title">Title:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
-<p><label for="id_desc">Desc:</label> <textarea cols="40" id="id_desc" name="desc" rows="10">
-</textarea></p>
-<p><label for="id_start_date">Start date:</label> <input id="id_start_date" name="start_date" type="text" /></p>
-<p><label for="id_end_date">End date:</label> <input id="id_end_date" name="end_date" type="text" /></p>
-<p><label for="id_room">Room:</label> <select id="id_room" name="room">
-<option value="" selected="selected">---------</option>
-<option value="Hall">Hall</option>
-<option value="Kitchen">Kitchen</option>
-<option value="Lounge">Lounge</option>
-<option value="Office One">Office One</option>
-</select></p>
-    <button type="submit" class="save btn btn-default">Save</button>
-</form>
- -->
+
 <script type="text/javascript">
     var dp = new DayPilot.Scheduler("dp");
-    
-    //dp.businessBeginsHour = 6;
-    //dp.businessEndsHour = 24;
-    //dp.showNonBusiness = false;
+    dp.allowEventOverlap = false;
+    //dp.viewType = "Resources"; - not working just like that but worth examining later
     
     dp.onIncludeTimeCell = function(args) {
         //console.log(args.cell.start.getHours());
@@ -85,7 +84,7 @@
     }
 
     // view
-    dp.startDate = new DayPilot.Date("2015-03-29");  // or just dp.startDate = "2013-03-25";
+    dp.startDate = new DayPilot.Date(new Date());  // or just dp.startDate = "2013-03-25";
     dp.cellGroupBy = "Month";
     dp.days = 7;
     dp.cellDuration = 30; // booking slots are multiples of 30 mins
@@ -137,7 +136,8 @@
             id: DayPilot.guid(),
             resource: all_bookings[i].room,
             text: all_bookings[i].title,
-            desc: all_bookings[i].desc,/*
+            desc: all_bookings[i].desc,
+            moveDisabled: true,/*
             bubbleHtml: "Testing bubble"*/
         });
         console.log(e);
@@ -199,13 +199,13 @@
         // dp.message("Created");
     };
     
-    dp.onEventClicked = function(args) {
-        alert("clicked: " + args.e.id());
-    };
+//     dp.onEventClicked = function(args) {
+//         alert("clicked: " + args.e.id());
+//     };
     
-    dp.onTimeHeaderClick = function(args) {
-        alert("clicked: " + args.header.start);
-    };
+//     dp.onTimeHeaderClick = function(args) {
+//         alert("clicked: " + args.header.start);
+//     };
 
     dp.init();
     

@@ -21,9 +21,20 @@ def booking_submit(request):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user
+            
+            # Verify that this booking will not conflict with any others
+            # ie in the same room, with overlapping times
+            # to do this quickly, find all bookings in same room, excluding those with start date after new end date and end date before new start date. This makes sense, I prmoise... 
+            conflicting_bookings = Booking.objects.filter(room=booking.room).exclude(start_date__gte=booking.end_date).exclude(end_date__lte=booking.start_date)
+            print conflicting_bookings
+            if len(conflicting_bookings) > 0:
+                print "conflicts found"
+                return render(request, "booking_submitted.html", {"success":False})    
+            print "no conflicts"
             booking.save()
             print booking
-            return render(request, "booking_submitted.html")
+            return render(request, "booking_submitted.html", {"success":True})
+        return render(request, "booking_submitted.html", {"success":False})
     else:
         return redirect('bookings.views.booking_calendar')
 

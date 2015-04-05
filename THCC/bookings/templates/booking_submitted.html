@@ -1,0 +1,19 @@
+{% extends '../templates/base.html' %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+{% block title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home.Bookings" %}</li>
+{% endblock %}
+
+{% block main %}
+    {% if success %}
+    <p>Thank you for your booking. It will now be approved by a member of staff, and confirmation will be sent to {{user.email}}</p>
+    {% else %}
+    <p>Sorry, there was an error making your booking. It's possible someone else took that spot, or you may not have filled in all of the form. Please return to the calendar and try again.</p>
+    {% endif %}
+<p><a href="{% url 'bookings.views.booking_calendar' %}">Back to calendar</a></p>
+<p><a href="/">To the homepage</a></p>
+{% endblock main %}
