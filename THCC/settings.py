@@ -239,7 +239,7 @@ APP_SHORTNAME = "THCC"
 APP_URL = "THCC"
 SITE_TITLE = "Tang Hall Community Centre"
 SITE_TAGLINE = "Tangy and saucy"
-
+ACCOUNTS_ENABLED = True
 ################
 # APPLICATIONS #
 ################
@@ -262,7 +262,7 @@ INSTALLED_APPS = (
     "mezzanine.pages",
     "mezzanine.galleries",
     "mezzanine.twitter",
-    #"mezzanine.accounts",
+    "mezzanine.accounts",
     #"mezzanine.mobile",
     #"reservations",
     "bookings"

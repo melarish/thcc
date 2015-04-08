@@ -18,6 +18,8 @@ def booking_submit(request):
     if request.method == "POST":
         form = BookingForm(request.POST)
         print "posting"
+        if not request.user.is_authenticated():
+            return render(request, "booking_submitted.html", {"success":False})
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user
