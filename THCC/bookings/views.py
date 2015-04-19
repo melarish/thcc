@@ -3,6 +3,38 @@ from models import Booking
 from forms import BookingForm
 from json import dumps
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import user_passes_test
+from django.views.decorators.csrf import csrf_exempt
+
+
+def admin_check(user):
+    return user.is_staff
+
+@user_passes_test(admin_check)
+@csrf_exempt  # until I figure out how to get CSRF working with JS
+def booking_approvals(request):     
+    if request.method == "POST":
+        is_approved = request.POST.get('approved')
+        booking_ID = request.POST.get('ID')
+        if "no" == is_approved:
+            booking_to_delete = Booking.objects.filter(id=booking_ID)
+            if len(booking_to_delete) == 0:  # if already rejected, just carry on as normal
+                return redirect('bookings.views.booking_approvals')
+            # This booking has been rejected - delete it so someone else can use this timeslot
+            booking_to_delete[0].delete()
+            # TODO: Send rejection email
+        if "yes" == is_approved:
+            booking_to_approve = Booking.objects.filter(id=booking_ID)[0]
+            booking_to_approve.approved = True
+            booking_to_approve.save()
+            # TODO: Send approval email
+    bookings_needing_approval = Booking.objects.filter(approved=False)
+    return render(request, "approvals.html", {'bookings': bookings_needing_approval})
+
+def booking_mine(request):     
+    bookings_for_user = Booking.objects.filter(user=request.user)
+    return render(request, "mine.html", {'bookings': bookings_for_user})
+
 
 def booking_calendar(request):          
     bookings = Booking.objects.all()
@@ -13,6 +45,7 @@ def booking_calendar(request):
     #print bookings_json_string
     form = BookingForm()
     return render(request, "calendar.html", {'bookings': bookings_json_string, 'form': form})
+
 
 def booking_submit(request):
     if request.method == "POST":

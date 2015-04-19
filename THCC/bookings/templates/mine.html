@@ -1,0 +1,24 @@
+{% extends '../templates/base.html' %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+{% block title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home.Bookings" %}</li>
+{% endblock %}
+
+{% block main %}
+            {% for booking in bookings %}
+                <div class="post">
+                    <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }}</a></h1>
+                    {% if not booking.approved %} <!-- TODO make this red -->
+                    <p>Awaiting approval</p>
+                    {% endif %}
+                    <div class="date">
+                        {{ booking.start_date }}
+                    </div>
+                    <p>{{ booking.desc|linebreaks }}</p>
+                </div>
+            {% endfor %}
+{% endblock main %}

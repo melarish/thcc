@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url(r'^add$', booking_add, name='booking_add'),
     url(r'^calendar$', booking_calendar, name='booking_calendar'),
     url(r'^submit$', booking_submit, name='booking_submit'),
+    url(r'^approve$', booking_approvals, name='booking_approvals'),
+    url(r'^mine$', booking_mine, name='booking_mine'),
 )
